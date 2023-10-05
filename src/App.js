@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useRef } from 'react';
+import { Container, Form, Input, Label, Lista, Item, Button } from './style';
+import Trash from './assets/lixeira.svg';
 
-function App() {
+const App = () => {
+  const [tarefas, setTarefa] = useState([]);
+  const inputTarefa = useRef();
+
+  const adicionarNovoTarefa = () => {
+    setTarefa([
+      ...tarefas,
+      {
+        id: Math.floor(Math.random() * 100),
+        tarefa: inputTarefa.current.value,
+      },
+    ]);
+
+    inputTarefa.current.value = ""
+  };
+
+  const deletarTarefas = (evt) =>{
+    
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Container>
+        <Form>
+          <Label for="nome">Digite uma tarefa:</Label>
+          <Input ref={inputTarefa} id="nome" placeholder="Digite uma tarefa" />
+          <Button onClick={adicionarNovoTarefa}>+</Button>
+          <Lista>
+            {tarefas.map(({ id, tarefa }) => (
+              <Item key={id}>
+                <p>{tarefa}</p>
+                <button onClick={deletarTarefas}>
+                  <img alt="lixeira" src={Trash} />
+                </button>
+              </Item>
+            ))}
+          </Lista>
+        </Form>
+      </Container>
+    </>
   );
-}
+};
 
 export default App;
