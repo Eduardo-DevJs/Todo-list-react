@@ -1,5 +1,14 @@
 import { useState, useRef } from 'react';
-import { Container, Form, Input, Label, Lista, Item, Button } from './style';
+import {
+  Container,
+  Form,
+  Input,
+  Label,
+  InputCheckBox,
+  Lista,
+  Item,
+  Button,
+} from './style';
 import Trash from './assets/lixeira.svg';
 
 const App = () => {
@@ -15,12 +24,21 @@ const App = () => {
       },
     ]);
 
-    inputTarefa.current.value = ""
+    inputTarefa.current.value = '';
   };
 
-  const deletarTarefas = (evt) =>{
-    
-  }
+  const deletarTarefas = (tarefaId) => {
+    const deleteTarefa = tarefas.filter((tarefa) => tarefa.id !== tarefaId);
+    setTarefa(deleteTarefa);
+  };
+
+  const tarefaFeita = (evt) => {
+    const alvoCheck = evt.target.parentNode;
+
+    if (alvoCheck) {
+      alvoCheck.classList.toggle('marcado');
+    }
+  };
 
   return (
     <>
@@ -32,8 +50,11 @@ const App = () => {
           <Lista>
             {tarefas.map(({ id, tarefa }) => (
               <Item key={id}>
-                <p>{tarefa}</p>
-                <button onClick={deletarTarefas}>
+                <div className='d-flex'>
+                  <InputCheckBox onChange={tarefaFeita} type="checkbox" />
+                  <p>{tarefa}</p>
+                </div>
+                <button onClick={() => deletarTarefas(id)}>
                   <img alt="lixeira" src={Trash} />
                 </button>
               </Item>

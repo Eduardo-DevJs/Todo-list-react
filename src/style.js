@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div `
+export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,6 +12,11 @@ export const Label = styled.label `
   font-size: 1.2rem;
   display: block;
   margin-bottom: 10px;
+`
+
+export const InputCheckBox = styled.input `
+  width: 20px;
+  height: 20px;
 `
 
 export const Form = styled.div`
@@ -39,6 +44,7 @@ export const Input = styled.input`
   outline: none;
   font-size: 1rem;
 `
+
 
 export const Lista = styled.ul`
   display: flex;

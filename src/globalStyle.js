@@ -8,6 +8,17 @@ export const globalStyle = createGlobalStyle`
     font-family: Arial, Helvetica, sans-serif;
     list-style: none;
   }
+  
+  .marcado {
+    text-decoration: 4px line-through ;
+    color: red;
+  }
+
+  .d-flex{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
 
   img {
     max-width: 100%;
